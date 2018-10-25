@@ -3,3 +3,4 @@
 Group components
 ----------
 - Emilio Molinari
+- Jasin Atipi
