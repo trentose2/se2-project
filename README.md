@@ -3,5 +3,5 @@
 Group components
 ----------
 - Emilio Molinari
-- Jasin Atipi
+- Jasin Atipi ([@atipiJ](https://github.com/atipiJ))
 - Massimo Mengarda
