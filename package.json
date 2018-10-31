@@ -1,0 +1,23 @@
+{
+  "name": "se2-project",
+  "version": "1.0.0",
+  "description": "Software Engineering 2 API project",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xates/se2-project.git"
+  },
+  "author": "Molinari Emilio, Mengarda Massimo, Pasquazzo Gabriele, Zanetti Alex, Atipi Jasin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xates/se2-project/issues"
+  },
+  "homepage": "https://github.com/xates/se2-project#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
