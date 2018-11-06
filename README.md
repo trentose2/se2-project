@@ -1,7 +1,7 @@
 # se2-project
 
-Group components
-----------
+## Group components
+
 - Emilio Molinari ([@xates](https://github.com/xates))
 - Jasin Atipi ([@atipiJ](https://github.com/atipiJ))
 - Massimo Mengarda ([@MassimoMengarda](https://github.com/MassimoMengarda))
