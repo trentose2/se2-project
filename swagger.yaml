@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: "se2-project"
+  title: "Software Engineering 2 Project"
   description: Polls is a simple API allowing consumers to view polls and vote in them.
   license:
     name: MIT
@@ -15,10 +15,34 @@ consumes:
 produces:
 - application/json
 paths:
-  /questions:
-    x-summary: Questions Collection
+  /user:
+    x-summary: Resource
     get:
-      summary: List All Questions
+      summary: User resource
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Question'
+          examples:
+            application/json:
+              - question: Favourite programming language?
+                published_at: '2015-08-05T08:40:51.620Z'
+                choices:
+                  - choice: Swift
+                    votes: 2048
+                  - choice: Python
+                    votes: 1024
+                  - choice: Objective-C
+                    votes: 512
+                  - choice: Ruby
+                    votes: 256
+  /task:
+    x-summary: Resource
+    get:
+      summary: Task resource
       responses:
         200:
           description: Successful Response
