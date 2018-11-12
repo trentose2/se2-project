@@ -7,7 +7,6 @@ info:
     The API is developed by ValsuganaBees.
   license:
     name: MIT
-    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
 host: se2-project.herokuapp.com
 basePath: /
 schemes:
