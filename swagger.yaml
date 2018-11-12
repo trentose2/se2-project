@@ -27,7 +27,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/User'
+              $ref: '#/definitions/RegisteredUser'
           examples:
             application/json:
               name: "Marco Rossi"
@@ -43,20 +43,21 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/NewUser'
       responses:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/RegisteredUser'
           examples:
             application/json:
+              id: "New id"
               name: "New User"
               username: "newuser"
               email: "new@user.test"
 definitions:
-  User:
-    title: User
+  NewUser:
+    title: New User
     type: object
     properties:
       name:
@@ -66,6 +67,23 @@ definitions:
       email:
         type: string
     required:
+      - name
+      - username
+      - email
+  RegisteredUser:
+    title: Registered User
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+    required:
+      - id
       - name
       - username
       - email
