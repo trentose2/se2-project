@@ -18,71 +18,11 @@ produces:
 paths:
   /users:
     x-summary: Users Collection
-    get:
-      summary: List All Users
-      responses:
-        200:
-          description: Successful Response
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RegisteredUser'
-          examples:
-            application/json:
-              name: "Marco Rossi"
-              username: "marchetto"
-              email: "marco@mail.prova"
-    post:
-      description: >-
-        You can register a user using this action. It takes a JSON
-        object containing a name, username and email.
-      summary: Register new User
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/NewUser'
-      responses:
-        201:
-          description: ''
-          schema:
-            $ref: '#/definitions/RegisteredUser'
-          examples:
-            application/json:
-              id: "New id"
-              name: "New User"
-              username: "newuser"
-              email: "new@user.test"
-definitions:
-  NewUser:
-    title: New User
-    type: object
-    properties:
-      name:
-        type: string
-      username:
-        type: string
-      email:
-        type: string
-    required:
-      - name
-      - username
-      - email
-  RegisteredUser:
-    title: Registered User
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      username:
-        type: string
-      email:
-        type: string
-    required:
-      - id
-      - name
-      - username
-      - email
+  /teachers:
+    x-summary: Teachers Collection
+  /students:
+    x-summary: Students Collection.
+  /tasks:
+    x-summary: Tasks Collection
+  /exams:
+    x-summary: Exams Collection
