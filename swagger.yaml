@@ -18,12 +18,663 @@ produces:
 - application/json
 paths:
   /users:
-    x-summary: Users Collection
-  /teachers:
-    x-summary: Teachers Collection
-  /students:
-    x-summary: Students Collection.
+    get:
+      summary: "GET: get all users"
+      tags:
+      - User
+      description: "get all users in database"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+    post:
+      summary: "creates new user"
+      tags:
+      - User
+      description: "creates a new user in database"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "User created"
+          schema:
+            $ref: '#/definitions/User'
+        405:
+          description: "Invalid input"
+
+
+  /users/{user_id}:
+    parameters:
+    - name: "user_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified user"
+      description: "get the user specified by its ID"
+      tags:
+      - User
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: "User not found"
+
+    put:
+      summary: "updates a user"
+      description: "updates the specified user"
+      tags:
+      - User
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses: # check the codes!!
+        200:
+          description: "User updated"
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "User not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "deletes a user"
+      description: "deletes the user specified by its id"
+      tags:
+      - User
+      responses:
+        200:
+          description: "user deleted"
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: "user not found"
+
+
+
   /tasks:
-    x-summary: Tasks Collection
+    get:
+      summary: "GET: get all tasks"
+      tags:
+      - Task
+      description: "get all tasks in database"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Task"
+
+    post:
+      summary: "creates new task"
+      tags:
+      - Task
+      description: "creates a new task in database"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Task that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Task"
+      responses:
+        201:
+          description: "Task created"
+          schema:
+            $ref: '#/definitions/Task'
+        405:
+          description: "Invalid input"
+
+
+  /tasks/{task_id}:
+    parameters:
+    - name: "task_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified task"
+      description: "get the task specified by its ID"
+      tags:
+      - Task
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Task'
+        404:
+          description: "Task not found"
+
+    put:
+      summary: "updates a task"
+      description: "updates the specified task"
+      tags:
+      - Task
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Task object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Task"
+      responses: # check the codes!!
+        200:
+          description: "Task updated"
+          schema:
+            $ref: '#/definitions/Task'
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Task not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "deletes a task"
+      description: "deletes the task specified by its id"
+      tags:
+      - Task
+      responses:
+        200:
+          description: "task deleted"
+          schema:
+            $ref: '#/definitions/Task'
+        404:
+          description: "task not found"
+
   /exams:
-    x-summary: Exams Collection
+    get:
+      summary: "GET: get all exams"
+      tags:
+      - Exam
+      description: "get all exams in database"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Exam"
+
+    post:
+      summary: "creates new exam"
+      tags:
+      - Exam
+      description: "creates a new exams in database, in order to have a specific pool of tasks, and not the ones automagically generated by the system"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Exam that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Exam"
+      responses:
+        201:
+          description: "Exam created"
+          schema:
+            $ref: '#/definitions/Exam'
+        405:
+          description: "Invalid input"
+
+
+  /exams/{exam_id}:
+    parameters:
+    - name: "exam_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified exam"
+      description: "get the exam specified by its ID"
+      tags:
+      - Exam
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Exam'
+        404:
+          description: "Exam not found"
+
+
+
+
+  /groups:
+    get:
+      summary: "GET: get all groups"
+      tags:
+      - Group
+      description: "get all groups in database"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Group"
+
+    post:
+      summary: "creates new group"
+      tags:
+      - Group
+      description: "creates a new group in database"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Group that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Group"
+      responses:
+        201:
+          description: "Group created"
+          schema:
+            $ref: '#/definitions/Group'
+        405:
+          description: "Invalid input"
+
+
+  /groups/{group_id}:
+    parameters:
+    - name: "group_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified group"
+      description: "get the group specified by its ID"
+      tags:
+      - Group
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        404:
+          description: "group not found"
+
+    put:
+      summary: "updates a group"
+      description: "updates the specified group"
+      tags:
+      - Group
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Group that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Group"
+      responses: # check the codes!!
+        200:
+          description: "Group updated"
+          schema:
+            $ref: '#/definitions/Group'
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Group not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "deletes a group"
+      description: "deletes the group specified by its id"
+      tags:
+      - Group
+      responses:
+        200:
+          description: "group deleted"
+          schema:
+            $ref: '#/definitions/Group'
+        404:
+          description: "group not found"
+
+  /tests:
+    get:
+      summary: "GET: get all tests"
+      tags:
+      - Test
+      description: "get all tests in database"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Test"
+
+    post:
+      summary: "creates new test"
+      tags:
+      - Test
+      description: "creates a new test in database"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Test that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Test"
+      responses:
+        201:
+          description: "Test created"
+          schema:
+            $ref: '#/definitions/Test'
+        405:
+          description: "Invalid input"
+
+
+  /tests/{test_id}:
+    parameters:
+    - name: "test_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified test"
+      description: "get the test specified by its ID"
+      tags:
+      - Test
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Test'
+        404:
+          description: "test not found"
+
+    put:
+      summary: "updates a test"
+      description: "updates the specified test"
+      tags:
+      - Test
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Test that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Test"
+      responses: # check the codes!!
+        200:
+          description: "Test updated"
+          schema:
+            $ref: '#/definitions/Test'
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Test not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "deletes a test"
+      description: "deletes the test specified by its id"
+      tags:
+      - Test
+      responses:
+        200:
+          description: "test deleted"
+          schema:
+            $ref: '#/definitions/Test'
+        404:
+          description: "test not found"
+  /tests/{test_id}/exams:
+    parameters:
+    - name: "test_id"
+      in: "path"
+      required: true
+      type: integer
+      description: "id of the test of which all the exams are requested"
+    get:
+      summary: "get all the exams related to the test"
+      description: "get all the exams which are automagically made out of tasks from the specified test. The number of question of each exam is specified in the examsize attribute of Test  "
+      tags:
+      - Test
+      - Exam
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Exam'
+        404:
+          description: "test not found"
+
+  /users/{user_id}/exams:
+    parameters:
+    - name: "user_id"
+      in: "path"
+      required: true
+      type: integer
+      description: "the id of the user"
+    get:
+      tags:
+      - User
+      - Exam
+      summary: "get all the exams assigned to user"
+      description: "get all the exams of which the given user, specified by its id, is assignee"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Exam'
+        404:
+          description: "user not found"
+  /tests/{test_id}/groups:
+    parameters:
+    - name: "test_id"
+      in: "path"
+      required: true
+      type: integer
+      description: "the id of the test"
+    get:
+      tags:
+      - Group
+      - Test
+      - Exam
+      summary: "get the groups of exam assignees"
+      description: "get the groups of which the members are assignee of the exams made out of this test"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        404:
+          description: "test not found"
+    put:
+      tags:
+      - Group
+      - Test
+      - Exam
+      summary: "assign a test to a group"
+      description: "assign the test to a group: every member of the group will be assignee of an exam made with tasks in the test, in the size specified in examsize"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        description: "the group to which assign the test"
+        schema:
+          $ref: '#/definitions/Group'
+
+      responses:
+        200:
+          description: OK
+        404:
+          description: "test non found"
+  /submissions:
+    get: #does it make sense??
+      tags:
+      - Submission
+      summary: "get all submissions"
+      description: "get all the submissions  in database"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Submission'
+
+    post:
+      tags:
+      - Submission
+      summary: "post a new submission"
+      description: "post the submission of a task, in order to be evaluated"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        description: "the submission to be posted"
+        schema:
+          $ref: '#/definitions/Submission'
+      responses:
+        201:
+          description: "submission created"
+          schema:
+            $ref: '#/definitions/Submission'
+        405:
+          description: "Invalid input"
+
+
+
+
+definitions:
+  Exam:
+    title: Exam
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      assignee:
+        $ref: '#/definitions/User'
+      tasks:
+        type: array
+        items:
+          $ref: '#/definitions/Task'
+          uniqueItems: true
+      test:
+        $ref: '#/definitions/Test'
+      evaluation:
+        type: number
+        readOnly: true
+
+  Group:
+    title: Group
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      members:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+  Submission:
+    title: "Submission"
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      main_reviewer:
+        $ref: '#/definitions/User'
+      peer_reviewers:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+      solution:
+        type: string
+      task:
+        $ref: '#/definitions/Task'
+
+  Review:
+    type: object
+    title: "Review"
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      comment:
+        type: string
+      evaluation:
+        type: number
+      reviewer:
+        $ref: '#/definitions/User'
+
+  Task:
+    title: Task
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      assignement:
+        type: string
+      assignement_type:
+        type: string
+      creator:
+        $ref: '#/definitions/User' #to be better defined!!
+    required:
+      - creator
+      - assignement
+      - assignement_type
+
+
+  Test:
+    title: Test
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      creator:
+        $ref: '#/definitions/User'
+      date:
+       type: string #da rivedere
+      deadline:
+        type: string #da rivedere
+      examsize:
+        type: integer
+      tasks:
+        type: array
+        items:
+          $ref: '#/definitions/Task'
+        uniqueItems: true
+
+  User:
+    title: User
+    type: object
+    properties:
+      id:
+        type: integer
+        readOnly: true
+      name:
+        type: string
+      email:
+        type: string
+      username:
+        type: string
+    required:
+      - name
+      - username
+      - email
