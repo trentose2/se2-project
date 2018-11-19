@@ -1,16 +1,17 @@
 swagger: '2.0'
 info:
   version: '1.0'
-  title: "ValsuganaBees API"
+  title: "Valsugana Bees API"
   description: >-
-    This is an API specification for the Software Engineering 2 group project (University of Trento). 
+    This is an API specification for the Software Engineering 2 group project (University of Trento).
     The API is developed by ValsuganaBees.
   license:
     name: MIT
+    url: https://github.com/xates/se2-project/blob/master/LICENSE
 host: se2-project.herokuapp.com
-basePath: /
+basePath: /v1
 schemes:
-- http
+- https
 consumes:
 - application/json
 produces:
