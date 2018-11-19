@@ -18,18 +18,7 @@ produces:
 - application/json
 paths:
   /users:
-    get:
-      summary: "GET: get all users"
-      tags:
-      - User
-      description: "get all users in database"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/User"
+
     post:
       summary: "creates new user"
       tags:
@@ -199,18 +188,7 @@ paths:
           description: "task not found"
 
   /exams:
-    get:
-      summary: "GET: get all exams"
-      tags:
-      - Exam
-      description: "get all exams in database"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Exam"
+
 
     post:
       summary: "creates new exam"
@@ -479,19 +457,29 @@ paths:
               $ref: '#/definitions/Exam'
         404:
           description: "user not found"
-  /users/{user_id}/reviews:
+  /tasks/{task_id}/reviews:
     parameters:
-    - name: "user_id"
-      in: "path"
+    - in: "path"
+      name: "task_id"
       required: true
       type: integer
-      description: "the id of the user"
+      description: "the id of the task"
+
+
     get:
       tags:
-      - User
+      - Task
       - Review
-      summary: "get all the reviews that a user has made (can be empty)"
-      description: "get all the reviews that have been posted by user with the specified id"
+      summary: "get all the reviews referred to a task"
+      description: "get all the reviews referred to the specified task"
+      parameters:
+      - in: "query"
+        name: "user_mail"
+        required: true
+        type: string
+        description: "email of the user who submitted the task identified by its ID"
+
+
       responses:
         200:
           description: OK
@@ -500,7 +488,7 @@ paths:
             items:
               $ref: '#/definitions/Review'
         404:
-          description: "user not found"
+          description: "user or task not found"
   /tests/{test_id}/groups:
     parameters:
     - name: "test_id"
@@ -542,12 +530,25 @@ paths:
           description: OK
         404:
           description: "test non found"
-  /submissions:
-    get: #does it make sense??
+  /task/{task_id}/submissions:
+    parameters:
+    - name: "task_id"
+      type: integer
+      in: "path"
+      required: true
+      description: "id of the task"
+    get:
       tags:
       - Submission
-      summary: "get all submissions"
-      description: "get all the submissions  in database"
+      - Task
+      summary: "get all submissions of the task identified by its ID"
+      description: "get all the submissions of the specified task"
+      parameters:
+      - in: "query"
+        name: "user_mail"
+        required: true
+        type: string
+        description: "email of the user who is reviewer of the task identified by its ID"
       responses:
         200:
           description: OK
@@ -555,18 +556,22 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Submission'
+        404:
+          description: "task not found"
+
     post:
       tags:
       - Submission
+      - Task
       summary: "post a new submission"
-      description: "post the submission of a task, in order to be evaluated"
+      description: "post the solution of the task identified by its ID, in order to be evaluated"
       parameters:
       - in: "body"
         name: "body"
         required: true
-        description: "the submission to be posted"
+        description: "the solution of the submission to be posted"
         schema:
-          $ref: '#/definitions/Submission'
+          type: string
       responses:
         201:
           description: "submission created"
@@ -574,19 +579,10 @@ paths:
             $ref: '#/definitions/Submission'
         405:
           description: "Invalid input"
+        404:
+          description: "task not found"
   /reviews:
-    get:
-      tags:
-      - Review
-      summary: "Get all Reviews"
-      description: "Get all the reviews in database"
-      responses:
-        200:
-          description: Successfully retrieved reviews
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Review'
+
     post:
       tags:
       - Review
@@ -668,8 +664,10 @@ definitions:
       id:
         type: integer
         readOnly: true
-      assignee:
-        $ref: '#/definitions/User'
+      assignee_ids:
+        type: array
+        items:
+         type: integer
       tasks:
         type: array
         items:
