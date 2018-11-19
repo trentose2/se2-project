@@ -479,6 +479,28 @@ paths:
               $ref: '#/definitions/Exam'
         404:
           description: "user not found"
+  /users/{user_id}/reviews:
+    parameters:
+    - name: "user_id"
+      in: "path"
+      required: true
+      type: integer
+      description: "the id of the user"
+    get:
+      tags:
+      - User
+      - Review
+      summary: "get all the reviews that a user has made (can be empty)"
+      description: "get all the reviews that have been posted by user with the specified id"
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Review'
+        404:
+          description: "user not found"
   /tests/{test_id}/groups:
     parameters:
     - name: "test_id"
@@ -533,7 +555,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Submission'
-
     post:
       tags:
       - Submission
@@ -553,10 +574,92 @@ paths:
             $ref: '#/definitions/Submission'
         405:
           description: "Invalid input"
+  /reviews:
+    get:
+      tags:
+      - Review
+      summary: "Get all Reviews"
+      description: "Get all the reviews in database"
+      responses:
+        200:
+          description: Successfully retrieved reviews
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Review'
+    post:
+      tags:
+      - Review
+      summary: "Post a new review"
+      description: "Post the evaluation of a task"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        description: "the review to be posted"
+        schema:
+          $ref: '#/definitions/Review'
+      responses:
+        201:
+          description: "review created"
+          schema:
+            $ref: '#/definitions/Review'
+        405:
+          description: "Invalid input"
+  /reviews/{review_id}:
+    parameters:
+    - name: "review_id"
+      in: "path"
+      required: true
+      type: integer
+    get:
+      summary: "get specified review"
+      description: "get the review specified by its ID"
+      tags:
+      - Review
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Review'
+        404:
+          description: "Review not found"
 
-
-
-
+    put:
+      summary: "updates a review"
+      description: "updates the specified review"
+      tags:
+      - Review
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Review object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      responses: # check the codes!!
+        200:
+          description: "Review updated"
+          schema:
+            $ref: '#/definitions/Review'
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "User not found"
+        405:
+          description: "Validation exception"
+    delete:
+      summary: "deletes a review"
+      description: "deletes the review specified by its id"
+      tags:
+      - Review
+      responses:
+        200:
+          description: "review deleted"
+          schema:
+            $ref: '#/definitions/Review'
+        404:
+          description: "Review not found"
 definitions:
   Exam:
     title: Exam
@@ -660,7 +763,6 @@ definitions:
         items:
           $ref: '#/definitions/Task'
         uniqueItems: true
-
   User:
     title: User
     type: object
