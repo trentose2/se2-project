@@ -2,10 +2,14 @@
   "name": "se2-project",
   "version": "1.0.0",
   "description": "Software Engineering 2 API project",
-  "main": "api.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node api.js",
-    "test": "echo No test specified"
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",
