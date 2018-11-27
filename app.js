@@ -28,6 +28,7 @@ task.post(req, res);
 
 app.delete('/v1/tasks/:id', (req, res)=>{
     task.delete(req, res);
+});
 
 //exams
 app.post('/v1/exams', (req, res) => {
