@@ -3,7 +3,7 @@ Exam = class Exam {
         this.name = name;
         this.pool = pool;
         this.group = group;
-        this.creator = creator;
+        this.creator = creator;//TODO aut set creator, waiting for cookies system
 
         this.id = uniqueID();
         this.creationTime = new Date();

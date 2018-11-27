@@ -1,7 +1,20 @@
 const request = require('supertest'); 
 
-const exam = require('./exam_methods.js');
+const exam = require('./exams.js');
 const app = require('../app.js');
+
+test('Exam GET /', async () => {
+    const response = await request(app).get('/');
+    expect(response.statusCode).toBe(200);
+});
+
+test('Exam GET /v1/exams (no exam yet)', async () => {
+    const response = await request(app)
+        .get('/v1/exams')
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+        expect(response.body.Exams).toEqual('No exams found');
+});
 
 test('Exam POST /v1/exams', async () => {
     const response = await request(app)
@@ -146,4 +159,13 @@ test('Exam POST /v1/exams with more request fields', async () => {
         })
         .set('Accept', 'application/json');
     expect(response.statusCode).toBe(400);
+});
+
+test('Exam GET /v1/exams (no exam yet)', async () => {
+    const response = await request(app)
+        .get('/v1/exams')
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+        expect(response.body.Exams).toBeDefined();
+        expect(response.body.Exams).toBeInstanceOf(Object);
 });
