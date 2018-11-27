@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const groups = require('./groups/groups.js')
 
-const pools = require('./paths/pools.js');
+const pools = require('./pools/pools.js');
 
 app.get('/', (req, res) => {
     res.json({msg: 'Hello :)' });
