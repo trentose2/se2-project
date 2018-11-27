@@ -38,9 +38,6 @@ exporter.post = function (req, res){
     }
 };
 
-exporter.put = function (req, res){
-    if(u.costructor !==)
-}
 
 exporter.delete = function (req, res){
     let id = req.params.id;
