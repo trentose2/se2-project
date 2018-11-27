@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const groups = require('./groups/groups.js')
 const task= require('./Tasks/tasks.js')
 const exams = require('./exams/exams.js');
+const user= require('./user/users.js')
 
 //health check
 app.get('/', (req, res) => {
@@ -36,6 +37,20 @@ app.post('/v1/exams', (req, res) => {
 });
 app.get('/v1/exams', (req, res) => {
     exams.getAllExams(req, res);
+});
+
+//user
+app.post('/v1/users', (req, res) =>{
+    user.post(req, res);
+});
+app.get('/v1/users/:id', (req, res) =>{
+    user.getById(req, res)
+});
+app.put('/v1/users/:id', (req, res) =>{
+    user.put(req, res)
+});
+app.delete('/v1/users/:id', (req, res) =>{
+    user.delete(req, res)
 });
 
 //keep at the end of the file
