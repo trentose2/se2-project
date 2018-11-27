@@ -27,6 +27,9 @@ task.post(req, res);
 
 app.delete('/v1/tasks/:id', (req, res)=>{
     task.delete(req, res);
+
+app.post('/v1/exams', (req, res) => {
+    exams.doPost(req, res);
 });
 
 //keep at the end of the file

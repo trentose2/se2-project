@@ -6,7 +6,7 @@ Exam = class Exam {
         this.creator = creator;
 
         this.id = uniqueID();
-        this.creationTime = Date.now();
+        this.creationTime = new Date();
     }
 
     getId() {
