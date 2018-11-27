@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app');
+const app = require('../app.js');
 
 test('Creating a valid pool should return with a 201 status code', async () => {
     const body = {
