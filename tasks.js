@@ -5,15 +5,15 @@ const methods = require('./task_methods.js')
 exporter.getById= function(req, res){
     let id= req.params.id;
 
-    var t;
-    t= methods.doGetById(id);
-    if(t===null){
+
+    let Task= methods.doGetById(id);
+    if(Task===null){
         res.sendStatus(404);
         return;
     }
     else{
         res.status(200)
-            .send(JSON.stringify(t))
+            .json({Task});
     }
 };
 
@@ -24,16 +24,16 @@ exporter.post = function (req, res){
     let type = req.body.type;
 
     if(!type || !title || !assignement){
-        res.sendStatus(409);
+        res.sendStatus(400);
         return
     }
     else{
-        let t = methods.doPost(title,assignement,type);
-        if(t === null){
-            res.sendStatus(451);
+        let Task = methods.doPost(title,assignement,type);
+        if(Task === null){
+            res.sendStatus(400);
             return;
         }
         res.status(201)
-            .send(JSON.stringify(t));
+            .json({Task});
     }
 };
