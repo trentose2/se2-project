@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const groups = require('./groups/groups.js')
 
-const pools = require('./pools/pools.js');
+const pools = require('./pools/unpacking.js');
 
 app.get('/', (req, res) => {
     res.json({msg: 'Hello :)' });
@@ -16,5 +16,6 @@ app.get('/', (req, res) => {
 app.post('/v1/groups', groups.doPost);
 
 app.post('/v1/pools', pools.doPost);
+app.get('/v1/pools', pools.doGet);
 
 module.exports = app;

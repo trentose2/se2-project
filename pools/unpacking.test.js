@@ -75,3 +75,10 @@ test('Creating a pool with a value for creator which is not a boolean should ret
         .send(body);
     expect(response.statusCode).toBe(400);
 });
+
+test('GET /v1/pools should return 200', async () => {
+    const response = await request(app)
+        .get('/v1/pools')
+        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+});
