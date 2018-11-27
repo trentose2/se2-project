@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 //groups
 app.post('/v1/groups', groups.doPost);
-
+app.get('/v1/groups', groups.getAllGroups);
 
 //tasks
 app.get('/v1/tasks/:id', (req, res) =>{

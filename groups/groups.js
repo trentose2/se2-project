@@ -1,4 +1,5 @@
 group_class = require("./group_class")
+const db = require('./db.js');
 
 const doPost = function (req, res) {
     var group_id = generateId();
@@ -28,16 +29,19 @@ const doPost = function (req, res) {
                         group_creationTime
                     );
     
+    db.insertGroup(group);
+
     res.sendStatus(201);
 }
 
-// const doGet = function (req, res) {
-    
-// }
+const getAllGroups = function (req, res) {
+    let groups = db.getAllGroups();
+    res.status(200).json({groups});
+}
 
 //TODO incremental id
 const generateId = function () {
-    return 1;
+    Math.floor(Math.random() * 100000) + 1; // returns a random integer from 1 to 100000;
 }
 
-module.exports = {doPost};
+module.exports = {doPost, getAllGroups};
