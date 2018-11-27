@@ -26,3 +26,18 @@ expect(
     new task.Task('t','a','t').getId() - new task.Task('t','a','t').getId()
 ).toBe(-1)
 );
+test('task title modification went ok', ()=>{
+    t= new task.Task("t1","a1","t1");
+    t.setTitle("t_modified");
+    expect(t.getTitle()).toEqual("t_modified");
+});
+test('task assignement modification went ok', ()=>{
+    t= new task.Task("t1","a1","t1");
+    t.setAssignement("a_modified");
+    expect(t.getAssignement()).toEqual("a_modified");
+});
+test('task type modification went ok', ()=>{
+    t= new task.Task("t1","a1","t1");
+    t.setType("t_modified");
+    expect(t.getType()).toEqual("t_modified");
+});

@@ -37,3 +37,14 @@ exporter.post = function (req, res){
             .json({Task});
     }
 };
+exporter.delete = function (req, res){
+    let id = req.params.id;
+    let Task= methods.doGetById(id);
+    if(methods.doDelete(id) && Task!==null){
+        res.status(200)
+            .json({Task});
+    }
+    else{
+        res.sendStatus(404);
+    }
+};

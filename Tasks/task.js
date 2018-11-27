@@ -25,6 +25,21 @@ exporter.Task= class Task {
     getCreator(){
         return this.creator;
     }
+    setTitle(title){
+        if(typeof(title)==='string'){
+            this.title=title;
+        }
+    }
+    setAssignement(assignement){
+        if(typeof(assignement)==='string'){
+            this.assignement=assignement;
+        }
+    }
+    setType(type){
+        if(typeof(type)==='string'){
+            this.type=type;
+        }
+    }
     setCreator(creator){
         this.creator=creator;
     }

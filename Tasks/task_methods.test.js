@@ -39,3 +39,9 @@ function f(){
         methods.doPost('a'+i, 'b'+i, 'c'+i);
     }
 }
+test('delete with proper id working', ()=>{
+    expect(methods.doDelete(1)).toBe(true);
+});
+test('delete with wrong id not working', ()=>{
+    expect(methods.doDelete(42000)).toBe(false);
+});

@@ -19,3 +19,7 @@ exporter.doGetById = function (id){
     data = db.getTaskById(id);
     return data;
 }
+// just a wrapper function around the deleteTask in database
+exporter.doDelete = function (id){
+    return db.deleteTask(id);
+}

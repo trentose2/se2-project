@@ -27,7 +27,7 @@ test('POST /v1/tasks with correct body should return an object', async ()=>{
   expect(response.body.Task).toBeDefined();
   expect(response.body.Task).toBeInstanceOf(Object);
 });
-test('POST /v1/tasks with wrong body should return 400 BAD REQUEST', async ()=>{
+test('POST /v1/tasks with wrong body should return 400 bad request', async ()=>{
     const response = await request(app)
         .post('/v1/tasks')
         .send(
@@ -47,4 +47,18 @@ test('given that a couple of tasks were created, GET /v1/tasks/0 should return 2
      expect(response.statusCode).toBe(200);
      expect(response.body.Task).toBeDefined();
      expect(response.body.Task).toBeInstanceOf(Object);
+});
+test('given that i created a task, deleting it should return the task i just created and 200 ok', async ()=>{
+    t= new task.Task("deleteTitle", "deleteAss","deleteType");
+    db.insertTask(t);
+    const response = await request(app).delete('/v1/tasks/'+t.getId());
+     expect(response.statusCode).toBe(200);
+     expect(response.body.Task).toBeDefined();
+     expect(response.body.Task).toBeInstanceOf(Object);
+});
+test(' deleting a non existing task should return 404 not found', async ()=>{
+
+    const response = await request(app).delete('/v1/tasks/420000');
+     expect(response.statusCode).toBe(404);
+
 });

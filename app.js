@@ -25,6 +25,9 @@ app.post('/v1/tasks', (req, res) =>{
 task.post(req, res);
 });
 
+app.delete('/v1/tasks/:id', (req, res)=>{
+    task.delete(req, res);
+});
 
 //keep at the end of the file
 module.exports = app;
