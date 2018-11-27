@@ -1,6 +1,4 @@
-exports = module.exports = {};
-
-exports.Pool = class Pool {
+const Pool = class Pool {
     constructor(id, name, description, tasks, creator, public_, creationTime) {
         this.id = id;
         this.name = name;
@@ -39,3 +37,5 @@ exports.Pool = class Pool {
         return this.creationTime;
     }
 };
+
+module.exports = { Pool };
