@@ -24,7 +24,7 @@ test('posting of 3 incorrect param does not work, 3rd param', () =>
 );
 test('memorization of tasks working', () =>
         expect(
-            db.getAll().length
+            db.getAllTasks().length
         ).toBe(6)
 );
 f();

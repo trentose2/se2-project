@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./app.js');
+const app = require('../app.js');
 const task = require('./task.js');
 const db = require('./simulated_db');
 
@@ -41,8 +41,8 @@ test('POST /v1/tasks with wrong body should return 400 BAD REQUEST', async ()=>{
         expect(response.statusCode).toBe(400);
 });
 test('given that a couple of tasks were created, GET /v1/tasks/0 should return 200 and an object', async ()=>{
-     db.insert(new task.Task('foo','bar','foo'));
-     db.insert(new task.Task('foo1','bar1','foo1'));
+     db.insertTask(new task.Task('foo','bar','foo'));
+     db.insertTask(new task.Task('foo1','bar1','foo1'));
      const response = await request(app).get('/v1/tasks/0');
      expect(response.statusCode).toBe(200);
      expect(response.body.Task).toBeDefined();

@@ -10,12 +10,12 @@ exporter.doPost = function (title, assignement, type) {
     }
     else{
         t = new task.Task(title, assignement, type);
-        db.insert(t);
+        db.insertTask(t);
         return t;
     }
 };
 // just a wrapper function around the getById in database
 exporter.doGetById = function (id){
-    data = db.getById(id);
+    data = db.getTaskById(id);
     return data;
 }

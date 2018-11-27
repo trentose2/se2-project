@@ -4,37 +4,37 @@ const db = require('./simulated_db.js');
 
 test('insert of task working', () =>
 expect(
-    db.insert(new task.Task('t','a','t'))
+    db.insertTask(new task.Task('t','a','t'))
 ).toBe(true)
 );
 test('insert of object not working', () =>
 expect(
-    db.insert(7)
+    db.insertTask(7)
 ).toBe(false)
 );
 test('insert of task working', () =>
 expect(
-    db.insert(new task.Task('t','a','t'))
+    db.insertTask(new task.Task('t','a','t'))
 ).toBe(true)
 );
 test('memorization working', () =>
 expect(
 
-    db.getAll().length
+    db.getAllTasks().length
 ).toBe(2)
 );
 test('get by id working with proper id', () =>
 expect(
-    db.getById(1)
+    db.getTaskById(1)
 ).toBeInstanceOf(task.Task)
 );
 test('get by id not working with non integer id', () =>
 expect(
-    db.getById('ciao')
+    db.getTaskById('ciao')
 ).toBe(null)
 );
 test('get by id not working with non-existing id', () =>
 expect(
-    db.getById(420000)
+    db.getTaskById(420000)
 ).toBe(null)
 );

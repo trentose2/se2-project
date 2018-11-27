@@ -2,7 +2,7 @@
 var exporter = module.exports = {};
 const task = require('./task.js');
 let db = new Array;
-exporter.insert = function (t) {
+exporter.insertTask = function (t) {
     if(t instanceof task.Task){
         db.push(t);
         return true;
@@ -11,10 +11,10 @@ exporter.insert = function (t) {
         return false;
     }
 }
-exporter.getAll = function (){
+exporter.getAllTasks = function (){
     return db;
 }
-exporter.getById = function (id){
+exporter.getTaskById = function (id){
     if(id.isNaN){
         return null;
     }

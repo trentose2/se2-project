@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const groups = require('./groups/groups.js')
-const task= require('./tasks.js')
+const task= require('./Tasks/tasks.js')
 
 //health check
 app.get('/', (req, res) => {
