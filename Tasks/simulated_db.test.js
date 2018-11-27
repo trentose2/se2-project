@@ -1,5 +1,5 @@
 //testing of the simulated db
-const task = require('./task.js');
+const task = require('./task_class.js');
 const db = require('./simulated_db.js');
 
 test('insert of task working', () =>

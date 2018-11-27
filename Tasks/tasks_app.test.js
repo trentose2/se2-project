@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../app.js');
-const task = require('./task.js');
+const task = require('./task_class.js');
 const db = require('./simulated_db');
 
 test('app module should be defined', () => {

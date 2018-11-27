@@ -1,6 +1,6 @@
 //api layer
 var exporter = module.exports ={}
-const task = require('./task.js')
+const task = require('./task_class.js')
 const methods = require('./task_methods.js')
 exporter.getById= function(req, res){
     let id= req.params.id;

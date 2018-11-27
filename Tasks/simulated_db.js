@@ -1,6 +1,6 @@
 // just an array
 var exporter = module.exports = {};
-const task = require('./task.js');
+const task = require('./task_class.js');
 let db = new Array;
 exporter.insertTask = function (t) {
     if(t instanceof task.Task){

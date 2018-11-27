@@ -1,5 +1,5 @@
 //testing of the object task
-const task=require('./task.js')
+const task=require('./task_class.js')
 
 test('task creation', () =>
 expect(

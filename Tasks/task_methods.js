@@ -1,4 +1,4 @@
-const task = require('./task.js')
+const task = require('./task_class.js')
 const db = require('./simulated_db.js')
 var exporter = module.exports = {};
 // TODO: creator validation
