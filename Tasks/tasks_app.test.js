@@ -62,3 +62,13 @@ test(' deleting a non existing task should return 404 not found', async ()=>{
      expect(response.statusCode).toBe(404);
 
 });
+test('given that i have only task without creator in the db, GET on v1/task even without ?user=... should return the same as db.getAll()', async ()=>{
+    for(i=0;i<5;i++){
+        t= new task.Task(i+"Title", i+"Ass",i+"Type");
+        db.insertTask(t);
+    }
+    const response = await request(app).get('/v1/tasks');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.Tasks).toBeDefined();
+    expect((response.body.Tasks).length).toEqual(db.getAllTasks().length);
+});
