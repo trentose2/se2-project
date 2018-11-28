@@ -48,3 +48,18 @@ exporter.delete = function (req, res){
         res.sendStatus(404);
     }
 };
+exporter.getByCreator = function (req, res){
+    let id = req.params.id; //todo modify this for auth
+    if(id === undefined || id === null){
+        id=-1;
+    }
+    let Tasks = methods.doGet(id);
+    if(Tasks === null){
+        res.status(200)
+            .json('{"message": "no task found"}')
+    }
+    else{
+        res.status(200)
+            .json(Tasks);
+    }
+}

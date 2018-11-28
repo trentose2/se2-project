@@ -2,6 +2,7 @@
 var exporter = module.exports = {};
 const task = require('./task_class.js');
 let db = new Array;
+//todo manage creator
 exporter.insertTask = function (t) {
     if(t instanceof task.Task){
         db.push(t);
@@ -56,3 +57,18 @@ exporter.updateTask = function (t){
         return null;
     }
 }
+exporter.getTasksByCreator = function (creator_id){
+    if(isNaN(creator_id)){
+        return null;
+    }
+    else{
+        data=db;
+        returned_tasks = new Array;
+        for(i=0; i<data.length; i++ ){              //todo manage better undefined creator
+            if(data[i].getCreator() == creator_id || data[i].getCreator()===undefined){
+                returned_tasks.push(data[i]);
+            }
+        }
+        return returned_tasks;
+    }
+};

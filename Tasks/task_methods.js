@@ -23,3 +23,12 @@ exporter.doGetById = function (id){
 exporter.doDelete = function (id){
     return db.deleteTask(id);
 }
+//just wrapper around the getByCreator in database
+exporter.doGet = function (creator_id){
+    if(isNaN(creator_id)){
+        return null;
+    }
+    else{
+        return db.getTasksByCreator(creator_id);
+    }
+}
