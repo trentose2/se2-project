@@ -54,12 +54,12 @@ exporter.getByCreator = function (req, res){
         id=-1;
     }
     let Tasks = methods.doGet(id);
-    if(Tasks === null){
+    if(Tasks === null || Tasks.length == 0){
         res.status(200)
-            .json('{"message": "no task found"}')
+            .json({"message": "no task found"})
     }
     else{
         res.status(200)
-            .json(Tasks);
+            .json({Tasks});
     }
 }
