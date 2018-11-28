@@ -2,6 +2,21 @@ const request = require('supertest');
 
 const app = require('../app');
 
+test('GET /v1/groups should return 200', async () => {
+    const response = await request(app)
+    .get('/v1/groups')
+    .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+});
+
+test('GET /v1/groups (no group yet)', async () => {
+    const response = await request(app)
+        .get('/v1/groups')
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+        expect(response.body.groups).toEqual('No groups found');
+});
+
 test('Creating a valid group should return with a 201 status code', async () => {
     const groupBody = {
         "name": "MFDM",
