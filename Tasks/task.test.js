@@ -41,3 +41,13 @@ test('task type modification went ok', ()=>{
     t.setType("t_modified");
     expect(t.getType()).toEqual("t_modified");
 });
+test('creator setting with id went ok', ()=>{
+    t= new task.Task("t1","a1","t1");
+    t.setCreator(1);
+    expect(t.getCreator()).toBe(1);
+});
+test('creator setting with not a number id went wrong', ()=>{
+    t= new task.Task("t1","a1","t1");
+    t.setCreator("ciao");
+    expect(t.getCreator()).toBe(undefined);
+});

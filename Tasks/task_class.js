@@ -41,7 +41,9 @@ exporter.Task= class Task {
         }
     }
     setCreator(creator){
-        this.creator=creator;
+        if(!isNaN(creator)){
+            this.creator=creator;
+        }
     }
 
 };

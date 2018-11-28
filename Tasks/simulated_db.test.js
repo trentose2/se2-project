@@ -55,3 +55,8 @@ test('update task should return updated task', () =>{
     expect(db.getTaskById(id).getTitle()).toEqual("t_modified");
 
 });
+test('get by creator with incorrect parameter should return null', ()=>{
+    t=new task.Task("t1","a1","t1");
+    db.insertTask(t);
+    expect(db.getTasksByCreator("ciao")).toBe(null);
+});
