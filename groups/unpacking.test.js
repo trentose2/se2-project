@@ -1,20 +1,11 @@
 const request = require('supertest');
-
 const app = require('../app');
 
 test('GET /v1/groups should return 200', async () => {
     const response = await request(app)
-    .get('/v1/groups')
-    .set('Accept', 'application/json');
-    expect(response.statusCode).toBe(200);
-});
-
-test('GET /v1/groups (no group yet)', async () => {
-    const response = await request(app)
         .get('/v1/groups')
         .set('Accept', 'application/json');
-        expect(response.statusCode).toBe(200);
-        expect(response.body.groups).toEqual('No groups found');
+    expect(response.statusCode).toBe(200);
 });
 
 test('Creating a valid group should return with a 201 status code', async () => {
@@ -27,9 +18,9 @@ test('Creating a valid group should return with a 201 status code', async () => 
     }
     const response = await request(app)
         .post('/v1/groups')
-        .send(groupBody)
         .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json');
+        .set('Content-Type', 'application/json')
+        .send(groupBody);
     expect(response.statusCode).toBe(201);
 });
 
@@ -44,9 +35,9 @@ test('Creating a group with a name that isn\'t a string should return 400 status
 
     const response = await request(app)
         .post('/v1/groups')
-        .send(groupBody)
         .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json');
+        .set('Content-Type', 'application/json')
+        .send(groupBody);
     expect(response.statusCode).toBe(400);
 });
 
@@ -61,9 +52,9 @@ test('Creating a group with a description that isn\'t a string should return 400
 
     const response = await request(app)
         .post('/v1/groups')
-        .send(groupBody)
         .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json');
+        .set('Content-Type', 'application/json')
+        .send(groupBody);
     expect(response.statusCode).toBe(400);
 });
 
@@ -78,9 +69,9 @@ test('Creating a group with users that aren\'t represented as a list of integers
 
     const response = await request(app)
         .post('/v1/groups')
-        .send(groupBody)
         .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json');
+        .set('Content-Type', 'application/json')
+        .send(groupBody);
     expect(response.statusCode).toBe(400);
 });
 
@@ -95,8 +86,8 @@ test('Creating a group with a creator that isn\'t represented as a number should
 
     const response = await request(app)
         .post('/v1/groups')
-        .send(groupBody)
         .set('Accept', 'application/json')
-        .set('Content-Type', 'application/json');
+        .set('Content-Type', 'application/json')
+        .send(groupBody);
     expect(response.statusCode).toBe(400);
 });

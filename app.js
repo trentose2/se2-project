@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const groups = require('./groups/groups.js');
+const groups = require('./groups/unpacking.js');
 const task = require('./Tasks/tasks.js');
 const exams = require('./exams/exams.js');
 const user = require('./user/users.js');
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 // groups
 app.post('/v1/groups', groups.doPost);
-app.get('/v1/groups', groups.getAllGroups);
+app.get('/v1/groups', groups.doGet);
 
 // tasks
 app.get('/v1/tasks/:id', (req, res) => {
