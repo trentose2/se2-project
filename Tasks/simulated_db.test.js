@@ -1,16 +1,11 @@
 //testing of the simulated db
 const task = require('./task_class.js');
 const db = require('./simulated_db.js');
-
+//correct input
 test('insert of task working', () =>
 expect(
     db.insertTask(new task.Task('t','a','t'))
 ).toBe(true)
-);
-test('insert of object not working', () =>
-expect(
-    db.insertTask(7)
-).toBe(false)
 );
 test('insert of task working', () =>
 expect(
@@ -28,22 +23,15 @@ expect(
     db.getTaskById(1)
 ).toBeInstanceOf(task.Task)
 );
-test('get by id not working with non integer id', () =>
+
+
+test('insert of object not working', () =>
 expect(
-    db.getTaskById('ciao')
-).toBe(null)
-);
-test('get by id not working with non-existing id', () =>
-expect(
-    db.getTaskById(420000)
-).toBe(null)
+    db.insertTask(7)
+).toBe(false)
 );
 test('deleteTask working with proper id', ()=>{
     expect(db.deleteTask(1)).toBe(true);
-    expect(db.getAllTasks().length).toBe(1);
-});
-test('deleteTask not working with non existing id', ()=>{
-    expect(db.deleteTask(420000)).toBe(false);
     expect(db.getAllTasks().length).toBe(1);
 });
 test('update task should return updated task', () =>{
@@ -54,6 +42,22 @@ test('update task should return updated task', () =>{
     db.updateTask(t);
     expect(db.getTaskById(id).getTitle()).toEqual("t_modified");
 
+});
+//wrong inputs
+test('get by id not working with non integer id', () =>
+expect(
+    db.getTaskById('ciao')
+).toBe(null)
+);
+test('get by id not working with non-existing id', () =>
+expect(
+    db.getTaskById(420000)
+).toBe(null)
+);
+test('deleteTask not working with non existing id', ()=>{
+    oldLength = db.getAllTasks().length;
+    expect(db.deleteTask(420000)).toBe(false);
+    expect(db.getAllTasks().length).toBe(oldLength);
 });
 test('get by creator with incorrect parameter should return null', ()=>{
     t=new task.Task("t1","a1","t1");

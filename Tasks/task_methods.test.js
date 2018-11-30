@@ -2,11 +2,27 @@ const task = require('./task_class.js')
 const db = require('./simulated_db.js')
 const methods = require('./task_methods.js')
 
+//correct inputs
+f();
 test('posting of 3 correct strings works', () =>
     expect(
         methods.doPost('t1','a1','t1')
     ).toBeInstanceOf(task.Task)
 );
+test('memorization of tasks working', () =>
+        expect(
+            db.getAllTasks().length
+        ).toBe(6)
+);
+test('get by id working', ()=>
+    expect(
+        methods.doGetById(3)
+    ).toBeInstanceOf(task.Task)
+);
+test('delete with proper id working', ()=>{
+    expect(methods.doDelete(1)).toBe(true);
+});
+//wrong inputs
 test('posting of 3 incorrect param does not work, 1st param', () =>
     expect(
         methods.doPost(7,'a1','t1')
@@ -22,26 +38,16 @@ test('posting of 3 incorrect param does not work, 3rd param', () =>
         methods.doPost('t3','a3',7)
     ).toBe(null)
 );
-test('memorization of tasks working', () =>
-        expect(
-            db.getAllTasks().length
-        ).toBe(6)
-);
-f();
-test('get by id working', ()=>
-    expect(
-        methods.doGetById(3)
-    ).toBeInstanceOf(task.Task)
-);
+test('delete with wrong id not working', ()=>{
+    expect(methods.doDelete(42000)).toBe(false);
+});
 
+
+
+
+//help functions
 function f(){
     for(i=0; i<5; i++){
         methods.doPost('a'+i, 'b'+i, 'c'+i);
     }
 }
-test('delete with proper id working', ()=>{
-    expect(methods.doDelete(1)).toBe(true);
-});
-test('delete with wrong id not working', ()=>{
-    expect(methods.doDelete(42000)).toBe(false);
-});
