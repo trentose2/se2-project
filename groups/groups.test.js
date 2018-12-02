@@ -8,6 +8,13 @@ test('GET /v1/groups should return 200', async () => {
     expect(response.statusCode).toBe(200);
 });
 
+test('GET /v1/groups/:id should return 200 if group with specified id exists', async () => {
+    const response = await request(app)
+        .get('/v1/groups/0')
+        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+});
+
 test('Creating a valid group should return with a 201 status code', async () => {
     const groupBody = {
         name: "MFDM",

@@ -21,20 +21,20 @@ function (newGroup) {
   groups.push(newGroup)
 }
 
-// const selectById = 
-// function (id){
-//   for(var group in groups){
-//     if (group.id == id){
-//       return group;
-//     }
-//   }
-//   return null;
-// }
+const selectById =
+function (id) {
+  let result = null
+  groups.forEach(group => {
+    if (group.id == id) {
+      result = group
+    }
+  })
+  return result
+}
 
 const selectAll =
-function() {
-  return groups;
+function () {
+  return groups
 }
 module.exports = {
-insert,
-selectAll}
+insert, selectAll, selectById}

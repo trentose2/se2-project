@@ -35,9 +35,20 @@ function (req, res) {
 
 const getAllGroups =
 function (req, res) {
-  groups = db.selectAll();
-  res.status(200).json({groups});
+  groups = db.selectAll()
+  res.status(200).json(groups)
+}
+
+const getGroupById =
+function (req, res) {
+  group = db.selectById(req.params.id)
+
+  if (group == null) {
+    res.sendStatus(404)
+  }else {
+    res.status(200).json(group)
+  }
 }
 
 module.exports = {
-post, getAllGroups}
+post, getAllGroups, getGroupById}
