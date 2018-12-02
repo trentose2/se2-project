@@ -33,11 +33,11 @@ function (req, res) {
   res.status(201).json(newGroup)
 }
 
-// const doGet =
-//     function(req, res) {
-//   result = groups.getByUserId(undefined)
-//   res.status(200).json({result})
-// }
+const getAllGroups =
+function (req, res) {
+  groups = db.selectAll();
+  res.status(200).json({groups});
+}
 
 module.exports = {
-post}
+post, getAllGroups}
