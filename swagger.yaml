@@ -827,7 +827,13 @@ definitions:
         description: "Assignment of the task"
       type:
         type: string
+        enum: [Open question, Multiple choice]
         description: "Type of the task"
+      choices:
+        type: array
+        items:
+          type: string
+        description: "Choices available as answers (if type is multiple-choice)"
       creator:
         type: integer
         format: int64
@@ -1017,3 +1023,4 @@ definitions:
         format: timestamp
         readOnly: true
         description: "Creation time of the review"
+        
