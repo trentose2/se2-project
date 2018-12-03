@@ -2,7 +2,7 @@
     {
         "id": 0,
         "title": "Area of a rectagnle",
-        "assignment": "Given that width and height of a rectangle, how do we calculate its area?",
+        "assignment": "Given the width and height of a rectangle, how do we calculate its area?",
         "type": "Open question",
         "creator": 0,
         "creationTime": 1543847945268
@@ -46,7 +46,7 @@
     {
         "id": 4,
         "title": "Quadratic solutions",
-        "assignment": "What are the solutions to the equation x^2=4?",
+        "assignment": "What are the real solutions to the equation x^2=4?",
         "type": "Multiple choice",
         "choices": [
             "1",
