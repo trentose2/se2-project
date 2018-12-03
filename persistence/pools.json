@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "name": "First 5 tasks",
+        "description": "This is the pool that contains the default 5 tasks present in the database",
+        "tasks": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "creator": 0,
+        "public": true,
+        "creationTime": 1543847945268
+    }
+]

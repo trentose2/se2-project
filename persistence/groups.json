@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "name": "First 5 users",
+        "description": "This is the group that contains the default 5 users present in the database",
+        "users": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "creator": 0,
+        "public": true,
+        "creationTime": 1543847945268
+    }
+]

@@ -1,0 +1,60 @@
+[
+    {
+        "id": 0,
+        "title": "Area of a rectagnle",
+        "assignment": "Given that width and height of a rectangle, how do we calculate its area?",
+        "type": "Open question",
+        "creator": 0,
+        "creationTime": 1543847945268
+    },
+    {
+        "id": 1,
+        "title": "Even numbers",
+        "assignment": "Which of the following are even numbers?",
+        "type": "Multiple choice",
+        "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "creator": 0,
+        "creationTime": 1543847945268
+    },
+    {
+        "id": 2,
+        "title": "Odd numbers",
+        "assignment": "Which of the following are odd numbers?",
+        "type": "Multiple choice",
+        "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "creator": 0,
+        "creationTime": 1543847945268
+    },
+    {
+        "id": 3,
+        "title": "Pythagorean Theorem",
+        "assignment": "What does the pythagorean theorem state?",
+        "type": "Open question",
+        "creator": 0,
+        "creationTime": 1543847945268
+    },
+    {
+        "id": 4,
+        "title": "Quadratic solutions",
+        "assignment": "What are the solutions to the equation x^2=4?",
+        "type": "Multiple choice",
+        "choices": [
+            "1",
+            "2",
+            "-1",
+            "-2"
+        ],
+        "creator": 0,
+        "creationTime": 1543847945268
+    }
+]

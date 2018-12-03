@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "email": "gianfranco@fini.it",
+        "username": "gianni",
+        "firstName": "Gianno",
+        "lastName": "Franchigia",
+        "registrationTime": 1543847945268
+    },
+    {
+        "id": 1,
+        "email": "giorgio@segalla.it",
+        "username": "giorgi1",
+        "firstName": "Giorgio",
+        "lastName": "Segalla",
+        "registrationTime": 1543847945268
+    },
+    {
+        "id": 2,
+        "email": "xates@emilio.it",
+        "username": "xates",
+        "firstName": "Emilio",
+        "lastName": "Molinari",
+        "registrationTime": 1543847945268
+    },
+    {
+        "id": 3,
+        "email": "maria@madonna.it",
+        "username": "mary97",
+        "firstName": "Maria",
+        "lastName": "Santa",
+        "registrationTime": 1543847945268
+    },
+    {
+        "id": 4,
+        "email": "montresort@unitn.it",
+        "username": "cricca",
+        "firstName": "Alberto",
+        "lastName": "Montresor",
+        "registrationTime": 1543847945268
+    },
+    {
+        "id": 5,
+        "email": "jorge@unitn.it",
+        "username": "ramirezrules",
+        "firstName": "Jorge",
+        "lastName": "Ramirez",
+        "registrationTime": 1543847945268
+    }
+]
