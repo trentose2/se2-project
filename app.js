@@ -10,6 +10,7 @@ const task = require('./Tasks/tasks.js');
 const exams = require('./exams/exams.js');
 const user = require('./user/users.js');
 const pools = require('./pools/unpacking.js');
+const papers = require('./papers/papers.js')
 
 // health check
 app.get('/', (req, res) => {
@@ -58,6 +59,9 @@ app.delete('/v1/users/:id', (req, res) => {
 // pools
 app.post('/v1/pools', pools.doPost);
 app.get('/v1/pools', pools.doGet);
+
+// papers
+app.get('/v1/papers', papers.getPapersByUserEmail);
 
 // keep at the end of the file
 module.exports = app;

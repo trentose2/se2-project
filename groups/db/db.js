@@ -8,8 +8,7 @@ groups = [{
   creationDate: 1543765956526
 }]
 
-const insert =
-function (newGroup) {
+const insert = function (newGroup) {
   let group_ids = groups.map(group => group.id)
 
   let maxId = 0
@@ -21,9 +20,8 @@ function (newGroup) {
   groups.push(newGroup)
 }
 
-const selectById =
-function (id) {
-  let result = null
+const selectById = function (id) {
+  let result = {};
   groups.forEach(group => {
     if (group.id == id) {
       result = group
@@ -32,9 +30,7 @@ function (id) {
   return result
 }
 
-const selectAll =
-function () {
+const selectAll = function () {
   return groups
 }
-module.exports = {
-insert, selectAll, selectById}
+module.exports = { insert, selectAll, selectById }

@@ -1,7 +1,6 @@
 const db = require('./db/db.js')
 
-const post =
-function (req, res) {
+const post = function (req, res) {
   let newGroup = {
     name: req.body.name,
     description: req.body.description,
@@ -33,22 +32,19 @@ function (req, res) {
   res.status(201).json(newGroup)
 }
 
-const getAllGroups =
-function (req, res) {
+const getAllGroups = function (req, res) {
   groups = db.selectAll()
   res.status(200).json(groups)
 }
 
-const getGroupById =
-function (req, res) {
+const getGroupById = function (req, res) {
   group = db.selectById(req.params.id)
 
   if (group == null) {
     res.sendStatus(404)
-  }else {
+  } else {
     res.status(200).json(group)
   }
 }
 
-module.exports = {
-post, getAllGroups, getGroupById}
+module.exports = { post, getAllGroups, getGroupById }
