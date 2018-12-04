@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest /test/"
   },
   "jest": {
     "verbose": true,
@@ -26,6 +26,7 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "eslint": "^5.9.0",
     "jest": "^23.6.0",
     "node-fetch": "^2.3.0",
     "supertest": "^3.3.0"

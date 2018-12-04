@@ -1,69 +1,68 @@
-const bodyParser = require('body-parser');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const groups = require('./groups/groups.js');
-const task = require('./Tasks/tasks.js');
-const exams = require('./exams/exams.js');
-const user = require('./user/users.js');
-const pools = require('./pools/unpacking.js');
-const papers = require('./papers/papers.js')
+// const users = require('./lib/users.js');
+const groups = require('./lib/groups.js');
+// const tasks = require('./lib/tasks.js');
+const pools = require('./lib/pools.js');
+// const exams = require('./lib/exams.js');
+// const papers = require('./lib/papers.js');
+// const submissions = require('./lib/submissions.js');
+// const reviews = require('./lib/reviews.js');
 
-// health check
 app.get('/', (req, res) => {
     res.json({ msg: 'Hello :)' });
 });
 
-// groups
-app.post('/v1/groups', groups.post);
-app.get('/v1/groups', groups.getAllGroups);
-app.get('/v1/groups/:id', groups.getGroupById);
+// app.post('/v1/users', users.postUsers);
+// app.get('/v1/users/:id', users.getUser);
+// app.put('/v1/users/:id', users.putUser);
+// app.delete('/v1/users/:id', users.deleteUser);
 
+app.get('/v1/groups', groups.getGroups);
+app.post('/v1/groups', groups.postGroups);
+app.get('/v1/groups/:id', groups.getGroup);
+// app.put('/v1/groups/:id', groups.putGroup);
+// app.delete('/v1/groups/:id', groups.deleteGroup);
 
-// tasks
-app.get('/v1/tasks/:id', (req, res) => {
-    task.getById(req, res);
-});
-app.post('/v1/tasks', (req, res) => {
-    task.post(req, res);
-});
-app.delete('/v1/tasks/:id', (req, res) => {
-    task.delete(req, res);
-});
+// app.get('/v1/tasks', tasks.getTasks);
+// app.post('/v1/tasks', tasks.postTasks);
+// app.get('/v1/tasks/:id', tasks.getTask);
+// app.put('/v1/tasks/:id', tasks.putTask);
+// app.delete('/v1/tasks/:id', tasks.deleteTask);
 
-// exams
-app.post('/v1/exams', (req, res) => {
-    exams.postExam(req, res);
-});
-app.get('/v1/exams', (req, res) => {
-    exams.getAllExams(req, res);
-});
+app.get('/v1/pools', pools.getPools);
+app.post('/v1/pools', pools.postPools);
+app.get('/v1/pools/:id', pools.getPool);
+// app.put('/v1/pools/:id', pools.putPool);
+// app.delete('/v1/pools/:id', pools.deletePool);
 
-// user
-app.post('/v1/users', (req, res) => {
-    user.post(req, res);
-});
-app.get('/v1/users/:id', (req, res) => {
-    user.getById(req, res);
-});
-app.put('/v1/users/:id', (req, res) => {
-    user.put(req, res);
-});
-app.delete('/v1/users/:id', (req, res) => {
-    user.delete(req, res);
-});
+// app.get('/v1/exams', exams.getExams);
+// app.post('/v1/exams', exams.postExams);
+// app.get('/v1/exams/:id', exams.getExam);
+// app.put('/v1/exams/:id', exams.putExam);
+// app.delete('/v1/exams/:id', exams.deleteExam);
 
-// pools
-app.post('/v1/pools', pools.doPost);
-app.get('/v1/pools', pools.doGet);
+// app.get('/v1/papers', papers.getPapers);
+// app.get('/v1/papers/:id', papers.getPaper);
+// app.get('/v1/exams/:id/papers', papers.getExamPapers);
 
-// papers
-app.get('/v1/papers', papers.getPapersByUserEmail);
-app.get('/v1/papers/:id', papers.getPaperById);
+// app.get('/v1/submissions/:id', submissions.getSubmission);
+// app.put('/v1/submissions/:id', submissions.putSubmission);
+// app.delete('/v1/submissions/:id', submissions.deleteSubmission);
+// app.get('/v1/papers/:id/submissions', submissions.getPaperSubmissions);
+// app.post('/v1/papers/:id/submissions', submissions.postPaperSubmissions);
+// app.get('/v1/tasks/:id/submissions', submissions.getTaskSubmissions);
+// app.post('/v1/tasks/:id/submissions', submissions.postTaskSubmissions);
 
+// app.get('/v1/reviews/:id', reviews.getReview);
+// app.put('/v1/reviews/:id', reviews.putReview);
+// app.delete('/v1/reviews/:id', reviews.deleteReview);
+// app.get('/v1/submissions/:id/reviews', reviews.getSubmissionReviews);
+// app.post('/v1/submissions/:id/reviews', reviews.postSubmissionReviews);
 
-// keep at the end of the file
 module.exports = app;
