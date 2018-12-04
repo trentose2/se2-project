@@ -4,7 +4,7 @@ const db = require('./simulated_db.js');
 
 test('POST on /user to insert of user', () =>
     expect(
-        db.insertUser(new user.User('e','u'))
+        db.insertUser(new user.User('e','u','f','l'))
     ).toBe(true)
 );
 test('POST on /user not working insert of object', () =>
@@ -14,7 +14,7 @@ test('POST on /user not working insert of object', () =>
 );
 test('POST on /user to insert of user', () =>
     expect(
-        db.insertUser(new user.User('e','u'))
+        db.insertUser(new user.User('e','u','f','l'))
     ).toBe(true)
 );
 test('GET on /users/{id} with proper id', () =>
@@ -30,6 +30,16 @@ test('GET on /users/{id} not working with non integer id', () =>
 test('GET on /users/{id} not working with non-existing id', () =>
     expect(
         db.getUserById(420000)
+    ).toBe(null)
+);
+//test('PUT on /users/{id} not working with existing id', () =>
+//    expect(
+//        db.updateUser(0,'New email','New username','New firstName','New lastName')
+//    ).toBe(user.User)
+//);
+test('PUT on /users/{id} not working with non-existing id', () =>
+    expect(
+        db.updateUser(87897,'New email','New username','New firstName','New lastName')
     ).toBe(null)
 );
 test('DELETE on /users/{id} working with proper id', ()=>{
@@ -49,7 +59,7 @@ test('DELETE on /users/{id} with non existing id', ()=>{
     ).toBe(1);
 });
 test('PUT on /users/{id} to update user information: should return updated user', () =>{
-    u=new user.User("e1","u1");
+    u=new user.User('e1','u1','f1','l1');
     db.insertUser(u);
     id=u.getId();
     u.setEmail("email_new");
