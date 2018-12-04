@@ -2,9 +2,11 @@ let exporter=module.exports={};
 
 exporter.User= class User {
 
-    constructor (email, username){
+    constructor (email, username, firstName, lastName){
         this.email=email;
         this.username=username;
+        this.firstName=firstName;
+        this.lastName=lastName;
 
         this.id=uniqueID();
         this.registrationTime=Date.now();
