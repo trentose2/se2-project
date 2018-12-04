@@ -12,10 +12,17 @@ test('GET / should return 200', async () => {
     expect(response.statusCode).toBe(200);
 });
 //wrong inputs
+//get /v1/tasks/id
 test('GET /v1/tasks/NOT A NUMBER should return 404', async ()=>{
     const response = await request(app).get('/v1/tasks/s');
     expect(response.statusCode).toBe(404);
 });
+test('GET /v1/tasks/non existing id should return 404', async ()=>{
+    let id = db.getAllTasks().length +42;
+    const response = await request(app).get('/v1/tasks/'+id);
+    expect(response.statusCode).toBe(404);
+});
+// post /v1/tasks
 test('POST /v1/tasks with wrong body should return 400 bad request', async ()=>{
     const response = await request(app)
         .post('/v1/tasks')
@@ -29,12 +36,44 @@ test('POST /v1/tasks with wrong body should return 400 bad request', async ()=>{
         .set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
 });
+test('POST /v1/tasks with  body with missing parameters should return 400 bad request', async ()=>{
+    const response = await request(app)
+        .post('/v1/tasks')
+        .send(
+            {
+                "title": "bar",
+                "type": "foo"
+            }
+        )
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(400);
+});
+test('POST /v1/tasks with  body with non-string  parameters  should return 400 bad request', async ()=>{
+    const response = await request(app)
+        .post('/v1/tasks')
+        .send(
+            {
+                "title": "bar",
+                "type": "foo",
+                "assignement": 42
+            }
+        )
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(400);
+});
+// delete /v1/tasks/:id
 test(' deleting a non existing task should return 404 not found', async ()=>{
     let non_ex =db.getAllTasks().length +100;
     const response = await request(app).delete('/v1/tasks/'+non_ex);
      expect(response.statusCode).toBe(404);
 
 });
+test('delete on v1/tasks/NOT A NUMBER should return 404 not found', async ()=>{
+    const response = await request(app).delete('/v1/tasks/ciao');
+     expect(response.statusCode).toBe(404);
+
+});
+// put /v1/tasks/id
 test('PUT on task with wrong body should give 400 bad request', async ()=>{
     let title = "t1";
     let type = "ty1";
@@ -51,9 +90,42 @@ test('PUT on task with wrong body should give 400 bad request', async ()=>{
     expect(response.statusCode).toBe(400);
 
 });
+test('PUT on task with body with missing parameters should give 400 bad request', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "title": title,
+                                            "assignement": "new assignement",
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(400);
 
+});
+test('PUT on task with correct body but with non-existing id in url should return 404', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    id= db.getAllTasks().length +42;
+    const response = await request(app).put('/v1/tasks/'+id)
+                                        .send({
+                                            "title": title,
+                                            "assignement": "new assignement",
+                                            "type": type
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(404);
+
+});
 
 //correct input
+
+//post v1/tasks
 test('POST /v1/tasks with correct body should return an object', async ()=>{
     const response = await request(app)
     .post('/v1/tasks')
@@ -67,7 +139,7 @@ test('POST /v1/tasks with correct body should return an object', async ()=>{
   expect(response.body.Task).toBeDefined();
   expect(response.body.Task).toBeInstanceOf(Object);
 });
-
+//get v1/tasks/:id
 test('given that a couple of tasks were created, GET /v1/tasks/0 should return 200 and an object', async ()=>{
      db.insertTask(new task.Task('foo','bar','foo'));
      db.insertTask(new task.Task('foo1','bar1','foo1'));
@@ -76,6 +148,7 @@ test('given that a couple of tasks were created, GET /v1/tasks/0 should return 2
      expect(response.body.Task).toBeDefined();
      expect(response.body.Task).toBeInstanceOf(Object);
 });
+//delete v1/tasks/:id
 test('given that i created a task, deleting it should return the task i just created and 200 ok', async ()=>{
     t= new task.Task("deleteTitle", "deleteAss","deleteType");
     db.insertTask(t);
@@ -84,6 +157,7 @@ test('given that i created a task, deleting it should return the task i just cre
      expect(response.body.Task).toBeDefined();
      expect(response.body.Task).toBeInstanceOf(Object);
 });
+//get v1/tasks
 test('given that i have only task without creator in the db, GET on v1/task even without ?user=... should return the same as db.getAll()', async ()=>{
     for(i=0;i<5;i++){
         t= new task.Task(i+"Title", i+"Ass",i+"Type");
@@ -94,6 +168,7 @@ test('given that i have only task without creator in the db, GET on v1/task even
     expect(response.body.Tasks).toBeDefined();
     expect((response.body.Tasks).length).toEqual(db.getAllTasks().length);
 });
+// put v1/tasks/:id
 test('PUT on task with modified title should change title, and not other attributes ', async ()=>{
     let title = "t1";
     let type = "ty1";
@@ -134,7 +209,7 @@ test('PUT on task with modified type should change type, and not other attribute
     expect(response.body.Task.type).toEqual("New Type");
     expect(response.body.Task.assignement).toEqual(assignement);
 });
-test('PUT on task with modified type should change type, and not other attributes ', async ()=>{
+test('PUT on task with modified assignement should change assignement, and not other attributes ', async ()=>{
     let title = "t1";
     let type = "ty1";
     let assignement = "ass1"

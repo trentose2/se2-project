@@ -34,7 +34,7 @@ exporter.post = function (req, res){
     else{
         let Task = methods.doPost(title,assignement,type);
         if(Task === null){
-            res.sendStatus(500);
+            res.sendStatus(400);
             return;
         }
         res.status(201)
@@ -86,7 +86,7 @@ exporter.putTask = function (req, res) {
     if(id!==null && !isNaN(id)){
         Task = methods.doPut(title, assignement, type, id);
         if(Task === null){
-            res.sendStatus(418);
+            res.sendStatus(404);
             return;
         }
         else{
