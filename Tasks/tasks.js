@@ -34,7 +34,7 @@ exporter.post = function (req, res){
     else{
         let Task = methods.doPost(title,assignement,type);
         if(Task === null){
-            res.sendStatus(500);
+            res.sendStatus(400);
             return;
         }
         res.status(201)

@@ -48,6 +48,19 @@ test('POST /v1/tasks with  body with missing parameters should return 400 bad re
         .set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
 });
+test('POST /v1/tasks with  body with non-string  parameters  should return 400 bad request', async ()=>{
+    const response = await request(app)
+        .post('/v1/tasks')
+        .send(
+            {
+                "title": "bar",
+                "type": "foo",
+                "assignement": 42
+            }
+        )
+        .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(400);
+});
 // delete /v1/tasks/:id
 test(' deleting a non existing task should return 404 not found', async ()=>{
     let non_ex =db.getAllTasks().length +100;
