@@ -1,12 +1,4 @@
-groups = [{
-  id: 0,
-  name: 'MFDM',
-  description: 'This group is formed by Mario, Franco, Daniel, Matteo',
-  users: [120, 100, 24, 34],
-  creator: 1,
-  public: true,
-  creationDate: 1543765956526
-}]
+let groups = require('../../persistence/groups.json');
 
 const insert = function (newGroup) {
   let group_ids = groups.map(group => group.id)
@@ -21,7 +13,7 @@ const insert = function (newGroup) {
 }
 
 const selectById = function (id) {
-  let result = {};
+  let result = null;
   groups.forEach(group => {
     if (group.id == id) {
       result = group

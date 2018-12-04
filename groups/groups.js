@@ -47,4 +47,4 @@ const getGroupById = function (req, res) {
   }
 }
 
-module.exports = { post, getAllGroups, getGroupById }
+module.exports = { post, getAllGroups, getGroupById}

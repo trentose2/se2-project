@@ -62,6 +62,8 @@ app.get('/v1/pools', pools.doGet);
 
 // papers
 app.get('/v1/papers', papers.getPapersByUserEmail);
+app.get('/v1/papers/:id', papers.getPaperById);
+
 
 // keep at the end of the file
 module.exports = app;

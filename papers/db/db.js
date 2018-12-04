@@ -1,10 +1,4 @@
-papers = [{
-  id: 0,
-  exam: 0,
-  user: 0,
-  tasks: [0, 1, 2, 3, 4],
-  mark: 10
-}]
+papers = require('../../persistence/papers.json')
 
 const insert = function (newPaper) {
   let paper_ids = papers.map(papers => papers.id)
@@ -32,4 +26,14 @@ const selectPapersByUserId = function (userId) {
   }
 }
 
-module.exports = { insert, selectPapersByUserId }
+const selectById = function (id) {
+  let result = null;
+  papers.forEach(paper => {
+    if (paper.id == id) {
+      result = paper;
+    }
+  })
+  return result;
+}
+
+module.exports = { insert, selectPapersByUserId, selectById}
