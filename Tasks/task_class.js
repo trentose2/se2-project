@@ -1,3 +1,4 @@
+//useful variable to export functions
 let exporter=module.exports={};
 
 exporter.Task= class Task {

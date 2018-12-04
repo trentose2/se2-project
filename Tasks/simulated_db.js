@@ -50,10 +50,16 @@ exporter.updateTask = function (t){
         return null;
     }
     else{
-        if(this.deleteTask(t.getId())){
-            db.push(t);
-            return t;
+        let id = t.getId();
+        for(i=0; i<db.length; i++ ){
+            if(db[i].getId() == id){
+                db[i].setTitle(t.getTitle());
+                db[i].setAssignement(t.getAssignement());
+                db[i].setType(t.getType());
+                return db[i];
+            }
         }
+
         return null;
     }
 }
