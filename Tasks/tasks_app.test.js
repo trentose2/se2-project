@@ -51,7 +51,38 @@ test('PUT on task with wrong body should give 400 bad request', async ()=>{
     expect(response.statusCode).toBe(400);
 
 });
+test('PUT on task with body with missing parameters should give 400 bad request', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "title": title,
+                                            "assignement": "new assignement",
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(400);
 
+});
+test('PUT on task with correct body but with non-existing id in url should return 404', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    id= db.getAllTasks().length +42;
+    const response = await request(app).put('/v1/tasks/'+id)
+                                        .send({
+                                            "title": title,
+                                            "assignement": "new assignement",
+                                            "type": type
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(404);
+
+});
 
 //correct input
 test('POST /v1/tasks with correct body should return an object', async ()=>{

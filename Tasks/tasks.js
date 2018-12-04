@@ -86,7 +86,7 @@ exporter.putTask = function (req, res) {
     if(id!==null && !isNaN(id)){
         Task = methods.doPut(title, assignement, type, id);
         if(Task === null){
-            res.sendStatus(418);
+            res.sendStatus(404);
             return;
         }
         else{
