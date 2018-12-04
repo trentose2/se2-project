@@ -35,8 +35,22 @@ test(' deleting a non existing task should return 404 not found', async ()=>{
      expect(response.statusCode).toBe(404);
 
 });
+test('PUT on task with wrong body should give 400 bad request', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "fooo": "the answer",
+                                            "bar": 42,
+                                            "foobar":  "bar"
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(400);
 
-
+});
 
 
 //correct input
@@ -79,4 +93,64 @@ test('given that i have only task without creator in the db, GET on v1/task even
     expect(response.statusCode).toBe(200);
     expect(response.body.Tasks).toBeDefined();
     expect((response.body.Tasks).length).toEqual(db.getAllTasks().length);
+});
+test('PUT on task with modified title should change title, and not other attributes ', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "title": "NEW TITLE",
+                                            "assignement": assignement,
+                                            "type":  type
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.Task).toBeDefined();
+    expect(response.body.Task.id).toEqual(t.getId());
+    expect(response.body.Task.title).toEqual("NEW TITLE");
+    expect(response.body.Task.type).toEqual(type);
+    expect(response.body.Task.assignement).toEqual(assignement);
+});
+test('PUT on task with modified type should change type, and not other attributes ', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "title": title,
+                                            "assignement": assignement,
+                                            "type":  "New Type"
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.Task).toBeDefined();
+    expect(response.body.Task.id).toEqual(t.getId());
+    expect(response.body.Task.title).toEqual(title);
+    expect(response.body.Task.type).toEqual("New Type");
+    expect(response.body.Task.assignement).toEqual(assignement);
+});
+test('PUT on task with modified type should change type, and not other attributes ', async ()=>{
+    let title = "t1";
+    let type = "ty1";
+    let assignement = "ass1"
+    t= new task.Task(title,assignement, type);
+    db.insertTask(t);
+    const response = await request(app).put('/v1/tasks/'+t.getId())
+                                        .send({
+                                            "title": title,
+                                            "assignement": "new assignement",
+                                            "type":  type
+                                        })
+                                        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.Task).toBeDefined();
+    expect(response.body.Task.id).toEqual(t.getId());
+    expect(response.body.Task.title).toEqual(title);
+    expect(response.body.Task.type).toEqual(type);
+    expect(response.body.Task.assignement).toEqual("new assignement");
 });

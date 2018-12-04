@@ -33,6 +33,9 @@ app.delete('/v1/tasks/:id', (req, res) => {
 app.get('/v1/tasks', (req, res)=>{
     task.getByCreator(req, res);
 });
+app.put('/v1/tasks/:id', (req, res)=>{
+    task.putTask(req, res);
+});
 
 // exams
 app.post('/v1/exams', (req, res) => {
