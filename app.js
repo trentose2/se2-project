@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const groups = require('./lib/groups.js');
-const task = require('./Tasks/tasks.js');
+const task = require('./lib/tasks.js');
 const exams = require('./lib/exams.js');
 const user = require('./user/users.js');
 const pools = require('./pools/unpacking.js');
@@ -25,13 +25,14 @@ app.get('/v1/groups/:id', groups.getGroupById);
 
 // tasks
 app.get('/v1/tasks/:id', (req, res) => {
+
     task.getById(req, res);
 });
 app.post('/v1/tasks', (req, res) => {
     task.post(req, res);
 });
 app.delete('/v1/tasks/:id', (req, res) => {
-    task.delete(req, res);
+    task.deleteTask(req, res);
 });
 app.get('/v1/tasks', (req, res)=>{
     task.getByCreator(req, res);
