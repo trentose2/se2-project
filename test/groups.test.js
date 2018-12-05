@@ -20,11 +20,10 @@ test('Creating a valid group should return with a 201 status code', async () => 
         name: "MFDM",
         description: "This group is formed by Mario, Franco, Daniel, Matteo",
         users: [120, 100, 24, 34],
-        creator: 1,
         public: true
     }
     const response = await request(app)
-        .post('/v1/groups')
+        .post('/v1/groups?creator=0')
         .set('Accept', 'application/json')
         .set('Content-Type', 'application/json')
         .send(groupBody);
@@ -36,7 +35,6 @@ test('Creating a group with a name that isn\'t a string should return 400 status
         name: 102415,
         description: "This group is formed by Mario, Franco, Daniel, Matteo",
         users: [120, 100, 24, 34],
-        creator: 1,
         public: true
     };
 
@@ -53,7 +51,6 @@ test('Creating a group with a description that isn\'t a string should return 400
         name: "MFDM",
         description: 1890,
         users: [120, 100, 24, 34],
-        creator: 1,
         public: true
     };
 
@@ -70,7 +67,6 @@ test('Creating a group with users that aren\'t represented as a list of integers
         name: "MFDM",
         description: "This group is formed by Mario, Franco, Daniel, Matteo",
         users: "lul",
-        creator: 1,
         public: true
     };
 
@@ -88,7 +84,6 @@ test('Creating a group with users that aren\'t represented as a list of integers
         name: "MFDM",
         description: "This group is formed by Mario, Franco, Daniel, Matteo",
         users: [120, 100, 24, "lul"],
-        creator: 1,
         public: true
     };
 
@@ -105,7 +100,6 @@ test('Creating a group with a creator that isn\'t represented as a number should
         name: "MFDM",
         description: "This group is formed by Mario, Franco, Daniel, Matteo",
         users: [120, 100, 24, 34],
-        creator: "cane",
         public: true
     };
 

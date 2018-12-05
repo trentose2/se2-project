@@ -5,12 +5,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const groups = require('./groups/groups.js');
+const groups = require('./lib/groups.js');
 const task = require('./Tasks/tasks.js');
-const exams = require('./exams/exams.js');
+const exams = require('./lib/exams.js');
 const user = require('./user/users.js');
 const pools = require('./pools/unpacking.js');
-const papers = require('./papers/papers.js')
+const papers = require('./lib/papers.js')
 
 // health check
 app.get('/', (req, res) => {
