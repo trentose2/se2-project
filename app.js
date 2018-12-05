@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const groups = require('./lib/groups.js');
 const task = require('./lib/tasks.js');
 const exams = require('./lib/exams.js');
-const user = require('./user/users.js');
+const user = require('./lib/users.js');
 const pools = require('./pools/unpacking.js');
 const papers = require('./lib/papers.js')
 
@@ -60,7 +60,7 @@ app.put('/v1/users/:id', (req, res) => {
     user.put(req, res);
 });
 app.delete('/v1/users/:id', (req, res) => {
-    user.delete(req, res);
+    user.deleteUser(req, res);
 });
 
 // pools
