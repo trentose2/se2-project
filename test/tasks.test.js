@@ -1,6 +1,8 @@
 const request = require('supertest');
 const app = require('../app.js');
-const db = require('../lib/db')
+const db = require('../lib/db');
+const tasks = require('../lib/tasks');
+
 //app functionality
 test('app module should be defined', () => {
     expect(app).toBeDefined();
@@ -286,4 +288,39 @@ test('PUT on task with modified assignement should change assignement, and not o
     expect(response.body.Task.title).toEqual(title);
     expect(response.body.Task.type).toEqual(type);
     expect(response.body.Task.assignement).toEqual("new assignement");
+});
+
+//testing on the working layer
+//correct inputs
+test('posting of 3 correct strings works', () =>
+    expect(
+        tasks.methods.doPost('t1','a1','t1')
+    ).toBeDefined()
+);
+test('get by id working', ()=>
+    expect(
+        tasks.methods.doGetById(3)
+    ).toBeDefined()
+);
+test('delete with proper id working', ()=>{
+    expect(tasks.methods.doDelete(1)).toBe(true);
+});
+//wrong inputs
+test('posting of 3 incorrect param does not work, 1st param', () =>
+    expect(
+        tasks.methods.doPost(7,'a1','t1')
+    ).toBe(null)
+);
+test('posting of 3 incorrect param does not work, 2nd param', () =>
+    expect(
+        tasks.methods.doPost('t2',7,'t2')
+    ).toBe(null)
+);
+test('posting of 3 incorrect param does not work, 3rd param', () =>
+    expect(
+        tasks.methods.doPost('t3','a3',7)
+    ).toBe(null)
+);
+test('delete with wrong id not working', ()=>{
+    expect(tasks.methods.doDelete(42000)).toBe(false);
 });
