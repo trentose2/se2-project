@@ -77,8 +77,16 @@ test('posting of incorrect param does not work, 2nd param', async () => {
 // );
 
 test('get by id working', async () => {
-    const response = await request(app).get('/v1/tasks/0');
+    const response = await request(app).get('/v1/users/0');
     expect(response.statusCode).toBe(200);
+    // expect(
+    //     methods.doGetById(3)
+    // ).toBeInstanceOf(user.User)
+});
+
+test('get by an non-existing id not working', async () => {
+    const response = await request(app).get('/v1/users/372342');
+    expect(response.statusCode).toBe(404);
     // expect(
     //     methods.doGetById(3)
     // ).toBeInstanceOf(user.User)
@@ -103,6 +111,35 @@ test('update user with correct param work', async () => {
     //    ).toBe(user.User)
 });
 
+test('update user with not-correct param not work', async () => {
+    let user = {
+        email: 2131,
+        username: 'username',
+        firstName: 'firstName',
+        lastName: 'lastName'
+    };
+
+    const response = await request(app)
+        .put('/v1/users/0')
+        .send(user)
+        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(400);
+});
+
+test('update user with non-existing id not work', async () => {
+    let user = {
+        email: 'name',
+        username: 'username',
+        firstName: 'firstName',
+        lastName: 'lastName'
+    };
+
+    const response = await request(app)
+        .put('/v1/users/3235345')
+        .send(user)
+        .set('Accept', 'application/json');
+    expect(response.statusCode).toBe(404);
+});
 
 // test('update user with an incorrect param not work', async () =>
 //     TODO request(app)...
