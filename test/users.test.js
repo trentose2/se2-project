@@ -61,7 +61,7 @@ test('posting of incorrect param does not work, 2nd param', async () => {
 });
 
 // test('posting of incorrect param does not work, 3rd param', async () =>
-//     //TODO request(app)...      
+//     //TODO request(app)...
 //     expect(
 //         methods.doPost('e3', 'u3', 3242, 'f4')
 //     ).toBe(null)
@@ -85,12 +85,12 @@ test('get by id working', async () => {
 });
 
 test('update user with correct param work', async () => {
-    user = {
+    let user = {
         email: 'name',
         username: 'username',
         firstName: 'firstName',
         lastName: 'lastName'
-    }
+    };
 
     const response = await request(app)
         .put('/v1/users/0')

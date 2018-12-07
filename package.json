@@ -26,8 +26,13 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "eslint": "^5.9.0",
     "jest": "^23.6.0",
     "node-fetch": "^2.3.0",
     "supertest": "^3.3.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }

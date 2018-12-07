@@ -17,11 +17,11 @@ test('GET /v1/groups/:id should return 200 if group with specified id exists', a
 
 test('Creating a valid group should return with a 201 status code', async () => {
     const groupBody = {
-        name: "MFDM",
-        description: "This group is formed by Mario, Franco, Daniel, Matteo",
+        name: 'MFDM',
+        description: 'This group is formed by Mario, Franco, Daniel, Matteo',
         users: [120, 100, 24, 34],
         public: true
-    }
+    };
     const response = await request(app)
         .post('/v1/groups?creator=0')
         .set('Accept', 'application/json')
@@ -33,7 +33,7 @@ test('Creating a valid group should return with a 201 status code', async () => 
 test('Creating a group with a name that isn\'t a string should return 400 status code', async () => {
     const groupBody = {
         name: 102415,
-        description: "This group is formed by Mario, Franco, Daniel, Matteo",
+        description: 'This group is formed by Mario, Franco, Daniel, Matteo',
         users: [120, 100, 24, 34],
         public: true
     };
@@ -48,7 +48,7 @@ test('Creating a group with a name that isn\'t a string should return 400 status
 
 test('Creating a group with a description that isn\'t a string should return 400 status code', async () => {
     const groupBody = {
-        name: "MFDM",
+        name: 'MFDM',
         description: 1890,
         users: [120, 100, 24, 34],
         public: true
@@ -64,9 +64,9 @@ test('Creating a group with a description that isn\'t a string should return 400
 
 test('Creating a group with users that aren\'t represented as a list of integers should return 400 status code', async () => {
     const groupBody = {
-        name: "MFDM",
-        description: "This group is formed by Mario, Franco, Daniel, Matteo",
-        users: "lul",
+        name: 'MFDM',
+        description: 'This group is formed by Mario, Franco, Daniel, Matteo',
+        users: 'lul',
         public: true
     };
 
@@ -81,9 +81,9 @@ test('Creating a group with users that aren\'t represented as a list of integers
 
 test('Creating a group with users that aren\'t represented as a list of integers should return 400 status code', async () => {
     const groupBody = {
-        name: "MFDM",
-        description: "This group is formed by Mario, Franco, Daniel, Matteo",
-        users: [120, 100, 24, "lul"],
+        name: 'MFDM',
+        description: 'This group is formed by Mario, Franco, Daniel, Matteo',
+        users: [120, 100, 24, 'lul'],
         public: true
     };
 
@@ -97,8 +97,8 @@ test('Creating a group with users that aren\'t represented as a list of integers
 
 test('Creating a group with a creator that isn\'t represented as a number should return 405 status code', async () => {
     const groupBody = {
-        name: "MFDM",
-        description: "This group is formed by Mario, Franco, Daniel, Matteo",
+        name: 'MFDM',
+        description: 'This group is formed by Mario, Franco, Daniel, Matteo',
         users: [120, 100, 24, 34],
         public: true
     };
